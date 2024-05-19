@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio Player</title>
+    <script>
+        function playRadio(url) {
+            fetch(url, { method: 'POST' })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('Success:', data);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</head>
+<body>
+    <h1>Radio Player</h1>
+    <button onclick="playRadio('http://192.168.1.153/playurl?url=https://stream.radiofrance.fr/fippop/fippop_hifi.m3u8')">FIP POP</button>
+    <button onclick="playRadio('http://192.168.1.153/playurl?url=https://stream.radiofrance.fr/fip/fip_hifi.m3u8')">FIP</button>
+</body>
+</html>
